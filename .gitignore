@@ -42,3 +42,7 @@ replay_*.log
 # local tools
 
 tools/installer/
+
+# built store upload
+
+curseforge/upload/
