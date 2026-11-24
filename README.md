@@ -61,6 +61,15 @@ Press **K** for the character screen.
 
 Progress is saved with the world, per player, and kept through death. Every number is in `rpg/Rpg.java`.
 
+## Dying
+
+- **Standard world:** you respawn with what was on you: hotbar, armour and off hand. Everything in your pack
+  stays where you fell as a glowing pile that never despawns, and you are told the coordinates. Level, talents
+  and skills are kept.
+- **Hardcore world** (Minecraft's own Hardcore option when you create the world): one life. When you die the
+  mod announces how many nights the run lasted and at what level.
+- With the `keepInventory` game rule on, vanilla keeps everything and the mod stands aside.
+
 ## What mist essence buys
 
 | Use | Cost |
@@ -100,7 +109,12 @@ Licence: MIT.
 
 Art is generated placeholder: `python tools/make_textures.py` rewrites every PNG, `python tools/make_assets.py`
 the JSON (language, recipes, loot). Repaint the PNGs in `src/main/resources/assets/fromthemist/textures` freely;
-keep their sizes. Sounds are vanilla sounds pitched down.
+keep their sizes. 
+
+Sounds: `python tools/make_sounds.py` builds every sound file and `sounds.json` (run it before `make_assets.py`,
+which reads the subtitles it writes). Thirteen are synthesized in that script; twelve are CC0 recordings from
+freesound.org kept in `tools/sounds_raw/`. Sources are listed in `SOUND-CREDITS.md`. A few vanilla sounds remain
+(the Hollow breaking blocks, the mist thinning).
 
 Tuning: `MistDirector` (bank distance and drift, spawn counts), `MistState` (bank size, nights per stage),
 `HollowEntity.customServerAiStep` (what each stage changes), `TalismanBlock` (nights per talisman),

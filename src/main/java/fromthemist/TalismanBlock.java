@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -132,7 +131,7 @@ public class TalismanBlock extends Block {
 				int charged = Math.min(MAX_CHARGE, charge + ESSENCE_CHARGE + Rpg.rank(player, Talent.STEADY_HANDS));
 				level.setBlock(pos, state.setValue(CHARGE, charged), Block.UPDATE_ALL);
 				itemStack.consume(1, player);
-				level.playSound(null, pos, SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.BLOCKS, 0.8F, 0.7F);
+				level.playSound(null, pos, ModSounds.TALISMAN_FEED, SoundSource.BLOCKS, 1.0F, 1.0F);
 				player.sendOverlayMessage(Component.translatable("message.fromthemist.talisman_fed", charged));
 			}
 		}

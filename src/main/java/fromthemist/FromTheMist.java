@@ -5,6 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -29,12 +30,18 @@ public class FromTheMist implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModContent.init();
+		ModSounds.init();
 		Rpg.init();
 		PayloadTypeRegistry.clientboundPlay().register(MistPayload.TYPE, MistPayload.STREAM_CODEC);
 		PayloadTypeRegistry.clientboundPlay().register(ShakePayload.TYPE, ShakePayload.STREAM_CODEC);
 
 		ServerTickEvents.END_LEVEL_TICK.register(MistDirector::tick);
 		ServerPlayConnectionEvents.JOIN.register((listener, sender, server) -> MistDirector.onJoin(listener.player));
+		ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
+			if (!alive) {
+				DeathRules.onRespawn(newPlayer);
+			}
+		});
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> WardManager.clear());
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> WardManager.clear());
 

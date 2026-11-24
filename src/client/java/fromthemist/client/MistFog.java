@@ -1,5 +1,7 @@
 package fromthemist.client;
 
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import fromthemist.ModSounds;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -19,6 +21,7 @@ public final class MistFog {
 	public static float target;
 	/** Set when a leviathan's foot lands nearby; decays over the next half second. */
 	public static float shake;
+	private static int untilLoop;
 	private static float previous;
 	private static float current;
 
@@ -52,6 +55,14 @@ public final class MistFog {
 
 		// Drifting motes so the mist has something moving in it up close.
 		float strength = current * depthFade((float) client.player.getY(), client.level);
+
+		// The mist has a sound: an 18 second bed, started every 14 so each one fades in under the last.
+		if (strength > 0.25F && !client.isPaused() && --untilLoop <= 0) {
+			untilLoop = 280;
+			client.getSoundManager().play(SimpleSoundInstance.forLocalAmbience(ModSounds.MIST_LOOP, 1.0F, 0.35F + 0.65F * strength));
+		} else if (strength <= 0.25F) {
+			untilLoop = 0;
+		}
 		if (strength > 0.3F && !client.isPaused()) {
 			RandomSource random = client.level.getRandom();
 			for (int i = 0; i < 3; i++) {

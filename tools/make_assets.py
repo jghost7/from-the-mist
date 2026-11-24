@@ -55,7 +55,9 @@ for item in ("talisman", "mist_essence"):
     write(f"assets/{NS}/models/item/{item}.json", {"parent": "minecraft:item/generated", "textures": {"layer0": f"{NS}:item/{item}"}})
 
 # ---------------------------------------------------------------- language
-write(f"assets/{NS}/lang/en_us.json", {
+# Subtitles for the sounds come from tools/make_sounds.py (run that first).
+SUBTITLES = json.load(open(os.path.join(os.path.dirname(__file__), "sound_subtitles.json"), encoding="utf-8"))
+write(f"assets/{NS}/lang/en_us.json", SUBTITLES | {
     "block.fromthemist.talisman": "Talisman",
     "item.fromthemist.mist_essence": "Mist Essence",
     "entity.fromthemist.hollow": "Hollow",
@@ -121,6 +123,8 @@ write(f"assets/{NS}/lang/en_us.json", {
     "message.fromthemist.level_up": "You are level %s. A talent point is waiting.",
     "message.fromthemist.skill_up": "%s is now %s.",
     "message.fromthemist.ability_cooldown": "Not ready for another %s seconds.",
+    "message.fromthemist.pack_dropped": "Your pack is where you fell, at %s, %s, %s. It will keep.",
+    "message.fromthemist.run_over": "%s is gone. The run ended after %s night(s), at level %s.",
     "message.fromthemist.welcome": "You find a carved stone in your pack. Hang it inside by the door, and shut the door before dark.",
     "message.fromthemist.dusk": "The light is going. Get inside.",
     "message.fromthemist.mist_coming": "A bank of mist is moving in from the %s.",

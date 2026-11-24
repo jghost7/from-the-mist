@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.world.item.ItemStack;
 
 /** One player's level, talents and skills. Lives in the world save, keyed by player id. */
 public class Progress {
@@ -17,7 +18,9 @@ public class Progress {
 		Codec.INT.fieldOf("points").forGetter(p -> p.points),
 		Codec.INT.listOf().fieldOf("talents").forGetter(p -> list(p.talents)),
 		Codec.INT.listOf().fieldOf("skill_levels").forGetter(p -> list(p.skillLevels)),
-		Codec.INT.listOf().fieldOf("skill_xp").forGetter(p -> list(p.skillXp))
+		Codec.INT.listOf().fieldOf("skill_xp").forGetter(p -> list(p.skillXp)),
+		Codec.INT.listOf().optionalFieldOf("kept_slots", List.of()).forGetter(p -> p.keptSlots),
+		ItemStack.OPTIONAL_CODEC.listOf().optionalFieldOf("kept_items", List.of()).forGetter(p -> p.keptItems)
 	).apply(i, Progress::new));
 
 	public int level;
@@ -32,17 +35,23 @@ public class Progress {
 	public final long[] readyAt = new long[ABILITIES];
 	/** Game time until which Clear Air is thinning the mist for this player. */
 	public long clearAirUntil;
+	/** What the player had on them when they died, waiting to be handed back on respawn (see DeathRules). */
+	public final List<Integer> keptSlots = new ArrayList<>();
+	public final List<ItemStack> keptItems = new ArrayList<>();
 
 	public Progress() {
 	}
 
-	private Progress(final int level, final int xp, final int points, final List<Integer> talents, final List<Integer> skillLevels, final List<Integer> skillXp) {
+	private Progress(final int level, final int xp, final int points, final List<Integer> talents, final List<Integer> skillLevels, final List<Integer> skillXp,
+		final List<Integer> keptSlots, final List<ItemStack> keptItems) {
 		this.level = level;
 		this.xp = xp;
 		this.points = points;
 		copy(talents, this.talents);
 		copy(skillLevels, this.skillLevels);
 		copy(skillXp, this.skillXp);
+		this.keptSlots.addAll(keptSlots);
+		this.keptItems.addAll(keptItems);
 	}
 
 	/** Experience needed to go from this level to the next. */

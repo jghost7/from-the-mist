@@ -1,5 +1,6 @@
 package fromthemist.entity;
 
+import fromthemist.ModSounds;
 import fromthemist.MistDirector;
 import fromthemist.ShakePayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -7,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
@@ -79,6 +79,10 @@ public class LeviathanEntity extends Mob {
 		return 18.0F;
 	}
 
+	protected float stepPitch() {
+		return 1.0F;
+	}
+
 	/** How far away a footfall can be felt, in blocks. */
 	protected double shakeRange() {
 		return 40.0;
@@ -86,7 +90,7 @@ public class LeviathanEntity extends Mob {
 
 	protected void call(final ServerLevel level) {
 		if (this.life % 360 == 120) {
-			level.playSound(null, this.getX(), this.getY() + 16.0, this.getZ(), SoundEvents.WARDEN_ROAR, SoundSource.HOSTILE, 10.0F, 0.5F);
+			level.playSound(null, this.getX(), this.getY() + 16.0, this.getZ(), ModSounds.LEVIATHAN_CALL, SoundSource.HOSTILE, 10.0F, 1.0F);
 		}
 	}
 
@@ -158,8 +162,7 @@ public class LeviathanEntity extends Mob {
 			double x = this.getX() + rightX * foot[0] + forwardX * foot[1];
 			double z = this.getZ() + rightZ * foot[0] + forwardZ * foot[1];
 			int column = level.getHeight(Heightmap.Types.MOTION_BLOCKING, Mth.floor(x), Mth.floor(z));
-			level.playSound(null, x, column, z, SoundEvents.WARDEN_STEP, SoundSource.HOSTILE, 6.0F, 0.4F);
-			level.playSound(null, x, column, z, SoundEvents.GENERIC_EXPLODE.value(), SoundSource.HOSTILE, 1.5F, 0.4F);
+			level.playSound(null, x, column, z, ModSounds.LEVIATHAN_STEP, SoundSource.HOSTILE, 6.0F, this.stepPitch());
 			level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, column + 0.5, z, (int) (radius * 8.0), radius * 0.5, 0.4, radius * 0.5, 0.03);
 			AABB area = new AABB(x - radius, column - 3.0, z - radius, x + radius, column + 5.0, z + radius);
 			for (LivingEntity victim : level.getEntitiesOfClass(LivingEntity.class, area, e -> !(e instanceof LeviathanEntity || e instanceof StingerEntity || e instanceof SkittererEntity))) {
@@ -187,18 +190,18 @@ public class LeviathanEntity extends Mob {
 
 		double reach = this.footSide();
 		if (this.deathTime == 1) {
-			level.playSound(null, this.getX(), this.getY() + 12.0, this.getZ(), SoundEvents.WARDEN_DEATH, SoundSource.HOSTILE, 12.0F, 0.5F);
+			level.playSound(null, this.getX(), this.getY() + 12.0, this.getZ(), ModSounds.LEVIATHAN_CALL, SoundSource.HOSTILE, 12.0F, 0.6F); // its own call, dragged down
 		}
 
 		if (this.deathTime < COLLAPSE_TICKS && this.deathTime % 6 == 0) {
 			// Joints letting go on the way down.
-			level.playSound(null, this.getX(), this.getY() + 6.0, this.getZ(), SoundEvents.ZOMBIE_BREAK_WOODEN_DOOR, SoundSource.HOSTILE, 5.0F, 0.4F);
+			level.playSound(null, this.getX(), this.getY() + 6.0, this.getZ(), ModSounds.LEVIATHAN_CRACK, SoundSource.HOSTILE, 6.0F, 0.7F + this.random.nextFloat() * 0.3F);
 			level.sendParticles(ParticleTypes.POOF, this.getX(), this.getY() + 2.0, this.getZ(), 30, reach * 0.6, 1.5, reach * 0.6, 0.05);
 		}
 
 		if (this.deathTime == COLLAPSE_TICKS) {
 			// The body hits the ground.
-			level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_EXPLODE.value(), SoundSource.HOSTILE, 10.0F, 0.3F);
+			level.playSound(null, this.getX(), this.getY(), this.getZ(), ModSounds.LEVIATHAN_CRASH, SoundSource.HOSTILE, 10.0F, this.stepPitch());
 			level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, this.getX(), this.getY() + 1.0, this.getZ(), 160, reach * 0.7, 1.0, reach * 0.7, 0.06);
 			level.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY() + 1.0, this.getZ(), 12, reach * 0.5, 0.5, reach * 0.5, 0.0);
 			AABB under = new AABB(this.getX() - reach * 0.6, this.getY() - 2.0, this.getZ() - reach * 0.6, this.getX() + reach * 0.6, this.getY() + 5.0, this.getZ() + reach * 0.6);

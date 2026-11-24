@@ -1,8 +1,8 @@
 package fromthemist.entity;
 
+import fromthemist.ModSounds;
 import fromthemist.ModContent;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntitySpawnReason;
@@ -52,6 +52,11 @@ public class ColossusEntity extends LeviathanEntity {
 	}
 
 	@Override
+	protected float stepPitch() {
+		return 0.72F;
+	}
+
+	@Override
 	protected double shakeRange() {
 		return 72.0;
 	}
@@ -59,8 +64,7 @@ public class ColossusEntity extends LeviathanEntity {
 	@Override
 	protected void call(final ServerLevel level) {
 		if (this.life % 420 == 60) {
-			// A goat horn dropped two octaves carries a long way and sounds like a ship in fog.
-			level.playSound(null, this.getX(), this.getY() + 30.0, this.getZ(), SoundEvents.GOAT_HORN_SOUND_VARIANTS.get(2).value(), SoundSource.HOSTILE, 16.0F, 0.5F);
+			level.playSound(null, this.getX(), this.getY() + 30.0, this.getZ(), ModSounds.COLOSSUS_CALL, SoundSource.HOSTILE, 14.0F, 1.0F);
 		}
 	}
 

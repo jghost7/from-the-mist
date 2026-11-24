@@ -1,0 +1,125 @@
+{
+  "mist.loop": {
+    "sounds": [
+      "fromthemist:mist_loop"
+    ]
+  },
+  "mist.horn": {
+    "sounds": [
+      "fromthemist:mist_horn"
+    ],
+    "subtitle": "subtitles.fromthemist.mist.horn"
+  },
+  "dusk.bell": {
+    "sounds": [
+      "fromthemist:dusk_bell"
+    ],
+    "subtitle": "subtitles.fromthemist.dusk.bell"
+  },
+  "hollow.idle": {
+    "sounds": [
+      "fromthemist:hollow_whisper_1",
+      "fromthemist:hollow_whisper_2",
+      "fromthemist:hollow_breath"
+    ],
+    "subtitle": "subtitles.fromthemist.hollow.idle"
+  },
+  "hollow.knock": {
+    "sounds": [
+      "fromthemist:hollow_knock_1",
+      "fromthemist:hollow_knock_2"
+    ],
+    "subtitle": "subtitles.fromthemist.hollow.knock"
+  },
+  "skitterer.idle": {
+    "sounds": [
+      "fromthemist:skitterer_idle_1",
+      "fromthemist:skitterer_idle_2"
+    ],
+    "subtitle": "subtitles.fromthemist.skitterer.idle"
+  },
+  "skitterer.hurt": {
+    "sounds": [
+      "fromthemist:skitterer_hurt"
+    ],
+    "subtitle": "subtitles.fromthemist.skitterer.hurt"
+  },
+  "stinger.idle": {
+    "sounds": [
+      "fromthemist:stinger_buzz_1",
+      "fromthemist:stinger_buzz_2"
+    ],
+    "subtitle": "subtitles.fromthemist.stinger.idle"
+  },
+  "stinger.hurt": {
+    "sounds": [
+      "fromthemist:stinger_hurt"
+    ],
+    "subtitle": "subtitles.fromthemist.stinger.hurt"
+  },
+  "leviathan.call": {
+    "sounds": [
+      "fromthemist:strider_call"
+    ],
+    "subtitle": "subtitles.fromthemist.leviathan.call"
+  },
+  "colossus.call": {
+    "sounds": [
+      "fromthemist:colossus_call"
+    ],
+    "subtitle": "subtitles.fromthemist.colossus.call"
+  },
+  "leviathan.step": {
+    "sounds": [
+      "fromthemist:leviathan_step"
+    ],
+    "subtitle": "subtitles.fromthemist.leviathan.step"
+  },
+  "leviathan.crack": {
+    "sounds": [
+      "fromthemist:leviathan_crack"
+    ],
+    "subtitle": "subtitles.fromthemist.leviathan.crack"
+  },
+  "leviathan.crash": {
+    "sounds": [
+      "fromthemist:leviathan_crash"
+    ],
+    "subtitle": "subtitles.fromthemist.leviathan.crash"
+  },
+  "talisman.feed": {
+    "sounds": [
+      "fromthemist:talisman_feed"
+    ],
+    "subtitle": "subtitles.fromthemist.talisman.feed"
+  },
+  "talisman.crack": {
+    "sounds": [
+      "fromthemist:talisman_crack"
+    ],
+    "subtitle": "subtitles.fromthemist.talisman.crack"
+  },
+  "ability.ward_pulse": {
+    "sounds": [
+      "fromthemist:ward_pulse"
+    ],
+    "subtitle": "subtitles.fromthemist.ability.ward_pulse"
+  },
+  "ability.clear_air": {
+    "sounds": [
+      "fromthemist:clear_air"
+    ],
+    "subtitle": "subtitles.fromthemist.ability.clear_air"
+  },
+  "ability.adrenaline": {
+    "sounds": [
+      "fromthemist:adrenaline"
+    ],
+    "subtitle": "subtitles.fromthemist.ability.adrenaline"
+  },
+  "level_up": {
+    "sounds": [
+      "fromthemist:level_up"
+    ]
+  }
+}

@@ -1,10 +1,10 @@
 package fromthemist.entity;
 
 import fromthemist.MistDirector;
+import fromthemist.ModSounds;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -74,21 +74,21 @@ public class SkittererEntity extends Monster {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.SILVERFISH_AMBIENT;
+		return ModSounds.SKITTERER_IDLE;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(final DamageSource source) {
-		return SoundEvents.SILVERFISH_HURT;
+		return ModSounds.SKITTERER_HURT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.SILVERFISH_DEATH;
+		return ModSounds.SKITTERER_HURT;
 	}
 
 	@Override
 	public float getVoicePitch() {
-		return 0.45F + this.random.nextFloat() * 0.15F;
+		return this.isDeadOrDying() ? 0.7F : 0.9F + this.random.nextFloat() * 0.25F;
 	}
 }

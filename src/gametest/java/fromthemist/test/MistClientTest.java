@@ -273,6 +273,31 @@ public class MistClientTest implements FabricClientGameTest {
 			if (essence < 1) {
 				throw new AssertionError("a killed skitterer should always drop mist essence");
 			}
+
+			// Dying in a standard world: what you wear and hold on your bar comes back with you, the pack stays behind.
+			server.runCommand("kill @e[type=!player]");
+			server.runCommand("item replace entity @a hotbar.0 with minecraft:iron_sword");
+			server.runCommand("item replace entity @a armor.head with minecraft:iron_helmet");
+			server.runCommand("item replace entity @a inventory.0 with minecraft:diamond 5");
+			server.runCommand("kill @a");
+			context.waitTicks(20);
+			context.runOnClient(client -> client.player.respawn());
+			context.waitTicks(60);
+			String after = server.computeOnServer(s -> {
+				ServerPlayer player = s.getPlayerList().getPlayers().get(0);
+				int diamonds = 0;
+				for (net.minecraft.world.entity.item.ItemEntity item : s.overworld().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class,
+					new net.minecraft.world.phys.AABB(player.blockPosition()).inflate(400.0), e -> e.getItem().is(net.minecraft.world.item.Items.DIAMOND))) {
+					diamonds += item.getItem().getCount();
+				}
+
+				return player.getInventory().getItem(0).is(net.minecraft.world.item.Items.IRON_SWORD) + " "
+					+ player.getInventory().getItem(39).is(net.minecraft.world.item.Items.IRON_HELMET) + " "
+					+ player.getInventory().getItem(9).isEmpty() + " " + diamonds;
+			});
+			if (!after.equals("true true true 5")) {
+				throw new AssertionError("death should keep sword and helmet, empty the pack and leave 5 diamonds on the ground; got " + after);
+			}
 		}
 	}
 

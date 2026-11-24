@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fromthemist.MistDirector;
+import fromthemist.ModSounds;
 import fromthemist.WardManager;
 import fromthemist.rpg.Rpg;
 import net.minecraft.core.BlockPos;
@@ -118,7 +119,7 @@ public class HollowEntity extends Monster {
 			this.knockCooldown -= 20;
 			if (this.knockCooldown <= 0) {
 				this.knockCooldown = 80 + this.random.nextInt(160);
-				this.playSound(SoundEvents.ZOMBIE_ATTACK_WOODEN_DOOR, 0.8F, 0.55F);
+				this.playSound(ModSounds.HOLLOW_KNOCK, 1.2F, 0.85F + this.random.nextFloat() * 0.2F);
 			}
 		}
 
@@ -234,21 +235,21 @@ public class HollowEntity extends Monster {
 
 	@Override
 	public int getAmbientSoundInterval() {
-		return 500;
+		return 260;
 	}
 
 	@Override
 	protected @Nullable SoundEvent getAmbientSound() {
-		return SoundEvents.VILLAGER_AMBIENT;
+		return ModSounds.HOLLOW_IDLE;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(final DamageSource source) {
-		return SoundEvents.VILLAGER_AMBIENT;
+		return ModSounds.HOLLOW_IDLE; // hitting one gets you a whisper, nothing more
 	}
 
 	@Override
 	public float getVoicePitch() {
-		return 0.5F + this.random.nextFloat() * 0.1F;
+		return 0.9F + this.random.nextFloat() * 0.15F;
 	}
 }

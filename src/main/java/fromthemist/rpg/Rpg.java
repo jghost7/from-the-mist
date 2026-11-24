@@ -1,5 +1,6 @@
 package fromthemist.rpg;
 
+import fromthemist.ModSounds;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -24,7 +25,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -178,7 +178,7 @@ public final class Rpg {
 			progress.level++;
 			progress.points++;
 			player.sendSystemMessage(Component.translatable("message.fromthemist.level_up", progress.level).withStyle(ChatFormatting.GOLD));
-			player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.8F, 0.8F);
+			player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LEVEL_UP, SoundSource.PLAYERS, 1.0F, 1.0F);
 		}
 
 		changed(player);
@@ -203,7 +203,7 @@ public final class Rpg {
 		}
 
 		if (levelled) {
-			player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 0.8F, 0.6F);
+			player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LEVEL_UP, SoundSource.PLAYERS, 0.6F, 1.5F);
 			applyAttributes(player);
 			addXp(player, 15);
 		}
@@ -325,7 +325,7 @@ public final class Rpg {
 				}
 
 				level.sendParticles(ParticleTypes.END_ROD, player.getX(), player.getY() + 1.0, player.getZ(), 80, 3.0, 0.6, 3.0, 0.15);
-				level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.RESPAWN_ANCHOR_CHARGE, SoundSource.PLAYERS, 1.2F, 0.5F);
+				level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.WARD_PULSE, SoundSource.PLAYERS, 2.0F, 1.0F);
 			}
 			case 1 -> {
 				// Clear Air: for 20 seconds the mist thins around you and its creatures within 32 blocks show through it.
@@ -334,13 +334,13 @@ public final class Rpg {
 					monster.addEffect(new MobEffectInstance(MobEffects.GLOWING, CLEAR_AIR_TICKS, 0));
 				}
 
-				level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.PLAYERS, 1.5F, 1.2F);
+				level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.CLEAR_AIR, SoundSource.PLAYERS, 1.5F, 1.0F);
 			}
 			default -> {
 				// Adrenaline: 8 seconds of Speed II and Resistance I.
 				player.addEffect(new MobEffectInstance(MobEffects.SPEED, 160, 1));
 				player.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 160, 0));
-				level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.WARDEN_HEARTBEAT, SoundSource.PLAYERS, 1.5F, 1.4F);
+				level.playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.ADRENALINE, SoundSource.PLAYERS, 1.5F, 1.0F);
 			}
 		}
 

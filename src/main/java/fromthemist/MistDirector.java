@@ -160,7 +160,7 @@ public final class MistDirector {
 			Component message = state.edgeDistance(listener.getX(), listener.getZ()) < 0.0
 				? Component.translatable("message.fromthemist.mist_here")
 				: Component.translatable("message.fromthemist.mist_coming", direction(state, listener));
-			tell(level, listener, message, SoundEvents.RAID_HORN.value(), 64.0F, 0.6F);
+			tell(level, listener, message, ModSounds.MIST_HORN, 4.0F, 1.0F);
 		}
 	}
 
@@ -196,7 +196,7 @@ public final class MistDirector {
 			state.lastDusk = dusk;
 			if (timeOfDay >= DUSK_WARNING && timeOfDay < NIGHT_START) {
 				for (ServerPlayer player : level.players()) {
-					tell(level, player, Component.translatable("message.fromthemist.dusk"), SoundEvents.BELL_BLOCK, 3.0F, 0.6F);
+					tell(level, player, Component.translatable("message.fromthemist.dusk"), ModSounds.DUSK_BELL, 3.0F, 1.0F);
 				}
 			}
 		}
@@ -253,7 +253,7 @@ public final class MistDirector {
 			level.setBlock(pos, block.setValue(TalismanBlock.CHARGE, charge - 1), Block.UPDATE_ALL);
 			String message = charge - 1 <= 0 ? "message.fromthemist.talisman_spent" : charge - 1 == 1 ? "message.fromthemist.talisman_last_night" : null;
 			if (message != null) {
-				level.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1.0F, 0.5F);
+				level.playSound(null, pos, ModSounds.TALISMAN_CRACK, SoundSource.BLOCKS, 1.5F, 1.0F);
 				for (ServerPlayer player : level.players()) {
 					if (player.blockPosition().closerThan(pos, 24.0)) {
 						player.sendSystemMessage(Component.translatable(message).withStyle(ChatFormatting.RED));

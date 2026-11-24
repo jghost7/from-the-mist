@@ -1,11 +1,11 @@
 package fromthemist.entity;
 
+import fromthemist.ModSounds;
 import fromthemist.rpg.Rpg;
 import fromthemist.rpg.Talent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -123,22 +123,22 @@ public class StingerEntity extends Monster {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.BEE_LOOP_AGGRESSIVE;
+		return ModSounds.STINGER_IDLE;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(final DamageSource source) {
-		return SoundEvents.PHANTOM_HURT;
+		return ModSounds.STINGER_HURT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return SoundEvents.PHANTOM_DEATH;
+		return ModSounds.STINGER_HURT;
 	}
 
 	@Override
 	public float getVoicePitch() {
-		return 0.5F + this.random.nextFloat() * 0.15F;
+		return this.isDeadOrDying() ? 0.75F : 1.0F + this.random.nextFloat() * 0.3F;
 	}
 
 	@Override
