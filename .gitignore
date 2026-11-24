@@ -50,3 +50,7 @@ curseforge/upload/
 # logo concepts that were not chosen
 
 curseforge/logo-options/
+
+# local server setup (has the owner's player name)
+
+server/
