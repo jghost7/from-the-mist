@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "fromthemist:mist_essence",
+    "fromthemist:mist_essence",
+    "fromthemist:mist_essence",
+    "fromthemist:mist_essence",
+    "minecraft:book"
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book",
+    "components": {
+      "minecraft:stored_enchantments": {
+        "minecraft:mending": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "fromthemist:talisman",
+          "modifier": [
+            {
+              "type": "minecraft:copy_state",
+              "block": "fromthemist:talisman",
+              "properties": [
+                "charge"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+	"schemaVersion": 1,
+	"id": "fromthemist",
+	"version": "${version}",
+	"name": "From the Mist",
+	"description": "Something walks at night, and something worse comes with the mist. Hang a talisman by your door and keep it fed.",
+	"authors": ["jghost7"],
+	"license": "MIT",
+	"icon": "assets/fromthemist/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": ["fromthemist.FromTheMist"],
+		"client": ["fromthemist.client.FromTheMistClient"]
+	},
+	"mixins": [
+		"fromthemist.mixins.json",
+		{ "config": "fromthemist.client.mixins.json", "environment": "client" }
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

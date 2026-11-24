@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": "fromthemist:mist_essence",
+    "G": "minecraft:gold_block",
+    "M": "minecraft:emerald"
+  },
+  "pattern": [
+    "EME",
+    "EGE",
+    " E "
+  ],
+  "result": {
+    "id": "minecraft:totem_of_undying"
+  }
+}

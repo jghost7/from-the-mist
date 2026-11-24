@@ -1,0 +1,15 @@
+{
+	"schemaVersion": 1,
+	"id": "fromthemist-test",
+	"version": "1.0.0",
+	"name": "From the Mist tests",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-client-gametest": [
+			"fromthemist.test.MistClientTest"
+		]
+	},
+	"depends": {
+		"fromthemist": "*"
+	}
+}

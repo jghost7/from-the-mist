@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "charge=0,facing=north": {
+      "model": "fromthemist:block/talisman_cracked"
+    },
+    "charge=1,facing=north": {
+      "model": "fromthemist:block/talisman_cracked"
+    },
+    "charge=2,facing=north": {
+      "model": "fromthemist:block/talisman"
+    },
+    "charge=3,facing=north": {
+      "model": "fromthemist:block/talisman"
+    },
+    "charge=4,facing=north": {
+      "model": "fromthemist:block/talisman"
+    },
+    "charge=5,facing=north": {
+      "model": "fromthemist:block/talisman"
+    },
+    "charge=6,facing=north": {
+      "model": "fromthemist:block/talisman"
+    },
+    "charge=7,facing=north": {
+      "model": "fromthemist:block/talisman"
+    },
+    "charge=0,facing=east": {
+      "model": "fromthemist:block/talisman_cracked",
+      "y": 90
+    },
+    "charge=1,facing=east": {
+      "model": "fromthemist:block/talisman_cracked",
+      "y": 90
+    },
+    "charge=2,facing=east": {
+      "model": "fromthemist:block/talisman",
+      "y": 90
+    },
+    "charge=3,facing=east": {
+      "model": "fromthemist:block/talisman",
+      "y": 90
+    },
+    "charge=4,facing=east": {
+      "model": "fromthemist:block/talisman",
+      "y": 90
+    },
+    "charge=5,facing=east": {
+      "model": "fromthemist:block/talisman",
+      "y": 90
+    },
+    "charge=6,facing=east": {
+      "model": "fromthemist:block/talisman",
+      "y": 90
+    },
+    "charge=7,facing=east": {
+      "model": "fromthemist:block/talisman",
+      "y": 90
+    },
+    "charge=0,facing=south": {
+      "model": "fromthemist:block/talisman_cracked",
+      "y": 180
+    },
+    "charge=1,facing=south": {
+      "model": "fromthemist:block/talisman_cracked",
+      "y": 180
+    },
+    "charge=2,facing=south": {
+      "model": "fromthemist:block/talisman",
+      "y": 180
+    },
+    "charge=3,facing=south": {
+      "model": "fromthemist:block/talisman",
+      "y": 180
+    },
+    "charge=4,facing=south": {
+      "model": "fromthemist:block/talisman",
+      "y": 180
+    },
+    "charge=5,facing=south": {
+      "model": "fromthemist:block/talisman",
+      "y": 180
+    },
+    "charge=6,facing=south": {
+      "model": "fromthemist:block/talisman",
+      "y": 180
+    },
+    "charge=7,facing=south": {
+      "model": "fromthemist:block/talisman",
+      "y": 180
+    },
+    "charge=0,facing=west": {
+      "model": "fromthemist:block/talisman_cracked",
+      "y": 270
+    },
+    "charge=1,facing=west": {
+      "model": "fromthemist:block/talisman_cracked",
+      "y": 270
+    },
+    "charge=2,facing=west": {
+      "model": "fromthemist:block/talisman",
+      "y": 270
+    },
+    "charge=3,facing=west": {
+      "model": "fromthemist:block/talisman",
+      "y": 270
+    },
+    "charge=4,facing=west": {
+      "model": "fromthemist:block/talisman",
+      "y": 270
+    },
+    "charge=5,facing=west": {
+      "model": "fromthemist:block/talisman",
+      "y": 270
+    },
+    "charge=6,facing=west": {
+      "model": "fromthemist:block/talisman",
+      "y": 270
+    },
+    "charge=7,facing=west": {
+      "model": "fromthemist:block/talisman",
+      "y": 270
+    }
+  }
+}
