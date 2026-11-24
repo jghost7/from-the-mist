@@ -10,7 +10,7 @@ bottom.
 | Name | From the Mist |
 | Summary | contents of `summary.txt` |
 | Description | paste `description.md` (switch the editor to Markdown first) |
-| Logo | `logo.png` (512 x 512) |
+| Logo | `logo.png` (512 x 512; `logo-master.png` is the 1024 original) |
 | Class | Mods |
 | Main category | Mobs |
 | Extra categories | Adventure and RPG |
